@@ -7,7 +7,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.js',
-    chunkFormat: 'jsonp'
   },
   module: {
     rules: [
