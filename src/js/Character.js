@@ -13,15 +13,19 @@ export class Character {
   }
 
   get attack() {
+    let damage = this._damage * (1 - (this.distanceFromTarget - 1) * 0.1);
+    if (this._stoned) {
+      damage -= Math.log2(this.distanceFromTarget) * 5;
+    }
+    this._damage = Math.round(damage);
     return this._damage;
   }
 
   set attack(distanceFromTarget) {
-    let damage = this._damage * (1 - (distanceFromTarget - 1) * 0.1);
-    if (this._stoned) {
-      damage -= Math.log2(distanceFromTarget) * 5;
+    this.distanceFromTarget = distanceFromTarget;
+    if(distanceFromTarget <= 0) {
+      throw new Error('Расстояние не может быть больше или равно 0');
     }
-    this._damage = Math.round(damage);
   }
 }
 

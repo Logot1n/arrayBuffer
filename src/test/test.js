@@ -26,6 +26,11 @@ describe('Character', () => {
     character.stoned = true;
     expect(character.stoned).toBe(true);
   });
+
+  test('check error for distanceFromTarget', () => {
+    const character = new Character(10);
+    expect(() => { character.attack = -1; }).toThrowError('Расстояние не может быть больше или равно 0');
+  })
 });
 
 describe('ArrayBufferConverter', () => {
